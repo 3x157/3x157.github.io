@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./output.css" rel="stylesheet" />
+  </head>
+  <body
+    class="font-mono bg-gradient-to-b from-gray-700 from-10% via-slate-950 via-40% to-gray-800 to-90% text-gray-100"
+  >
+    <div class="container mx-auto p-10">
+      {% include 'header.html' %}
+      <div class="grid grid-cols-12 gap-6">
+        <div class="col-span-10">
+          {% for page, v in pages.items() %} {{v.content}} {% endfor %}
+        </div>
+        <div class="col-span-2 text-right">
+          <ul>
+            {% for page, v in pages.items() %}
+            <li class="list-item py-3 px-1">
+              <a href="#{{v.anchor}}" class="underline">{{v.title}}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% include 'footer.html' %}
+  </body>
+</html>

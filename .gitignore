@@ -5,3 +5,4 @@ package.json
 tailwind.config.js
 watch.sh
 node_modules
+venv/
