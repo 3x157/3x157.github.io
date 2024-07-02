@@ -1,0 +1,7 @@
+input.css
+node_modules/
+package-lock.json
+package.json
+tailwind.config.js
+watch.sh
+node_modules
