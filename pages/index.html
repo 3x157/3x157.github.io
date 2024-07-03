@@ -12,10 +12,10 @@
     <div class="container mx-auto p-10">
       {% include 'header.html' %}
       <div class="grid grid-cols-12 gap-6">
-        <div class="col-span-10">
+        <div class="col-span-12 md:col-span-10">
           {% for page, v in pages.items() %} {{v.content}} {% endfor %}
         </div>
-        <div class="col-span-2 text-right">
+        <div class="invisible lg:visible col-span-2 text-right">
           <ul>
             {% for page, v in pages.items() %}
             <li class="list-item py-3 px-1">
