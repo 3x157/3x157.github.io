@@ -509,15 +509,6 @@ y = [0, 1, 0, 1, 2, 1, 0, 1, 0]
        programs[1] solves for y[1]
         ... and so on ...
     </pre>
-    <pre
-      class="bg-gray-900 text-gray-400 px-4 pt-4 rounded border border-gray-600"
-    >
-    X = (0, 1, 0, 1, 0, 1, 0, 1, 0)
-    programs = mem.find(X)
-    y_output = VirtualMachine(X=X).run(programs)
-    print(y_output) 
-    # -> (0, 1, 0, 1, 2, 1, 0, 1, 0)
-    </pre>
     <h2 class="py-4 text-2xl">Virtual Machine Operations</h2>
     <p class="py-2">
       The idea behind the virtual machine is very basic: it knows a predefined
