@@ -27,7 +27,7 @@ def generate():
     pages = {
         # NOTE: order matters, but a TODO in the future would be to sort by dates
         "arc.html": {"content": "", "date": "", "anchor": "", "title": ""},
-        "care.html": {"content": "", "date": "", "anchor": "", "title": ""},
+        # "care.html": {"content": "", "date": "", "anchor": "", "title": ""},
         "hello.html": {},
     }
 
