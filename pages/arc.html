@@ -480,15 +480,14 @@
       </div>
     </div>
     <p class="py-2">
-      We now have a set of programs that can take input X and solve each y[n]
-      individually. You can think of this programatically like this (Python):
+      With each step, 1 through 8, a set of virtual machine operations will be
+      generated to go from X to y[n]. Once completed, we now have a set of
+      programs that can take input X and solve each y[n] individually. You can
+      think of this programatically like this (Python):
     </p>
     <pre
       class="bg-gray-900 text-gray-400 px-2 pt-4 rounded border border-gray-600"
     >
-    # track programs by signature of X
-    mem = Memory()
-
     X = (0, 1, 0, 1, 0, 1, 0, 1, 0)
     y = (0, 1, 0, 1, 2, 1, 0, 1, 0)
 
@@ -498,14 +497,16 @@
             X=X, y=[y_item]
         ).bruteforce()
         programs.append(program)
-    mem.insert(X=X, y=y, programs=programs)
-    mem.save_to_disk("/path/to/memfile")
     </pre>
     <p class="py-2">
-      This introduced the concept of the Mem() object that tracks programs and
-      their signatures. The idea behind Mem is that it can be used to lookup
-      exact matches for a set of X input, or fuzzy close matches. Example:
+      The programs list is simply a set of opcodes that the virtual machine can
+      run. It simple maps by index to each y[n] like so:
     </p>
+    <pre>
+       programs[0] solves for y[0]
+       programs[1] solves for y[1]
+        ... and so on ...
+    </pre>
     <pre
       class="bg-gray-900 text-gray-400 px-2 pt-4 rounded border border-gray-600"
     >
@@ -517,7 +518,7 @@
     </pre>
     <h2 class="py-4 text-2xl">Virtual Machine Operations</h2>
     <p class="py-2">
-      The idea behind the virtual machine is very basic: it knows a predifined
+      The idea behind the virtual machine is very basic: it knows a predefined
       set of operations it can execute against X to generate y output. The
       following is an example of what I'm experimenting with (pardon the mess,
       it is a WIP):
