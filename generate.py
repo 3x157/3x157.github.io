@@ -25,6 +25,8 @@ def page_info(page_name: str) -> dict[str, str]:
 def generate():
     generate_date = str(datetime.datetime.now(datetime.UTC))
     pages = {
+        # NOTE: order matters, but a TODO in the future would be to sort by dates
+        "arc.html": {"content": "", "date": "", "anchor": "", "title": ""},
         "care.html": {"content": "", "date": "", "anchor": "", "title": ""},
         "hello.html": {},
     }
