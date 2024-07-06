@@ -109,32 +109,32 @@
       X:
     </p>
     <pre
-      class="bg-gray-900 text-gray-400 px-2 pt-4 rounded border border-gray-600"
+      class="bg-gray-900 text-gray-400 px-4 pt-4 rounded border border-gray-600"
     >
-        [
-            [0, 1, 0],
-            [1, 0, 1],
-            [0, 1, 0],
-        ]
+[
+    [0, 1, 0],
+    [1, 0, 1],
+    [0, 1, 0],
+]
     </pre>
     <p class="py-2">where 1 represents green and 0 unfilled.</p>
     <p class="py-2">The accompanying y output values translate to:</p>
     <pre
-      class="bg-gray-900 text-gray-400 px-2 pt-4 rounded border border-gray-600"
+      class="bg-gray-900 text-gray-400 px-4 pt-4 rounded border border-gray-600"
     >
-        [
-            [0, 1, 0],
-            [1, 2, 1],
-            [0, 1, 0],
-        ]
+[
+    [0, 1, 0],
+    [1, 2, 1],
+    [0, 1, 0],
+]
     </pre>
     <p class="py-2">where the 2 represents orange.</p>
     <p class="py-2">Both X and y are then flattened to 1-dimension like so:</p>
     <pre
-      class="bg-gray-900 text-gray-400 px-2 pt-4 rounded border border-gray-600"
+      class="bg-gray-900 text-gray-400 px-4 pt-4 rounded border border-gray-600"
     >
-        X = [0, 1, 0, 1, 0, 1, 0, 1, 0]
-        y = [0, 1, 0, 1, 2, 1, 0, 1, 0]
+X = [0, 1, 0, 1, 0, 1, 0, 1, 0]
+y = [0, 1, 0, 1, 2, 1, 0, 1, 0]
     </pre>
     <p class="py-2">
       X is then fed to a program generator that finds opcodes to calculate y[n].
@@ -488,7 +488,7 @@
       think of this programatically like this (Python):
     </p>
     <pre
-      class="bg-gray-900 text-gray-400 px-2 pt-4 rounded border border-gray-600"
+      class="bg-gray-900 text-gray-400 px-4 pt-4 rounded border border-gray-600"
     >
     X = (0, 1, 0, 1, 0, 1, 0, 1, 0)
     y = (0, 1, 0, 1, 2, 1, 0, 1, 0)
@@ -510,7 +510,7 @@
         ... and so on ...
     </pre>
     <pre
-      class="bg-gray-900 text-gray-400 px-2 pt-4 rounded border border-gray-600"
+      class="bg-gray-900 text-gray-400 px-4 pt-4 rounded border border-gray-600"
     >
     X = (0, 1, 0, 1, 0, 1, 0, 1, 0)
     programs = mem.find(X)
