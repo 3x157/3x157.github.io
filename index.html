@@ -7,7 +7,7 @@
     <title>3x157</title>
   </head>
   <body
-    class="font-mono bg-gradient-to-b from-gray-700 from-10% via-slate-950 via-40% to-gray-800 to-90% text-gray-100"
+    class="font-mono bg-gradient-to-b from-gray-900 from-10% via-slate-950 via-40% to-gray-800 to-90% text-gray-100"
   >
     <div class="container mx-auto px-4">
       <!-- header -->
@@ -58,43 +58,20 @@
   <div class="my-2 text-gray-200">
     <h2 class="text-2xl">Thinking (WIP)...</h2>
     <p class="pt-2">
-      I have been thinking a lot about general intelligence since 2008, but due
-      to life-circumstances, I have not had the time to properly explore these
-      ideas. The
-      <a href="https://arcprize.org/">ARC Prize competition</a> is interesting,
-      and a few changes in life have given me more time for side projects (kids
-      are more independent, finishing school). These are my notes on what I'm
-      working on, when time and inspiration is available.
-    </p>
-    <h2 class="pt-4 text-2xl">Outside the Box</h2>
-    <p class="pt-2">
-      Traditional neural networks are nearing their limits. LLMs are constrained
-      by training data, while other machine learning algorithms have narrow
-      applications. Leading AI researchers acknowledge this, noting that current
-      approaches largely build on decades-old concepts rather than introducing
-      novel ideas.
-    </p>
-    <p class="pt-2">
-      AGI might be achievable (or steps-toward) through a combination of
-      mini-programs and efficient input signal identification from streams or
-      static length inputs. These signals trigger specific program sets to
-      execute in a virtual machine (VM).
-    </p>
-    <p class="pt-2">
-      A brute-force program method employs reductionism to learn new problems
-      through input/output examples, but by breaking it down into smaller
-      problems (described below). Problems with only input (only X, no y) are
-      translated into smaller input-output recognition tasks for both signature
-      and sequence training. Background processes (a subconcious?) then
-      reorganize signatures and programs, identifying sets that solve multiple
-      problems or work across various signals. An idea of "dreaming" (another
-      background process), generates new programs to solve already solved
-      problems, looking for optimizations.
+      AGI may be achievable (or steps-toward) via a combination of
+      mini-programs run on a simple virtual machine combined with efficient input signal
+      signatures. Signals are routed to specific
+      program sets that execute on a virtual machine (VM).
     </p>
     <h2 class="pt-4 text-2xl">Brute-force Reductionism</h2>
     <p class="pt-2">
-      In this example, any enclosed block that is not filled, gets filled. See
-      ARC prize puzzle
+      Brute-force reductionism: reduce the search space by breaking down
+      input/output matrices into subsets of problems.
+    </p>
+    <p class="pt-2">
+      In this example: if an unfilled block is surrounded by filled blocks
+      above, below, left, and right, then set the unfilled block color to
+      yellow. See ARC prize puzzle
       <a href="https://arcprize.org/play?task=00d62c1b" class="underline"
         >0062c1b</a
       >
@@ -186,8 +163,7 @@
     </div>
     <p class="py-2">
       To break down the problem for brute-force reductionism, the input X will
-      be used in a loop against each y value. Lets say the grid translates to
-      this <span class="text-green-300 font-semibold">list[list[int]]</span> for
+      be used in a loop against each y value. 
       X:
     </p>
     <pre
@@ -200,7 +176,7 @@
 ]
     </pre>
     <p class="py-2">where 1 represents green and 0 unfilled.</p>
-    <p class="py-2">The accompanying y output values translate to:</p>
+    <p class="py-2">The accompanying y output:</p>
     <pre
       class="bg-gray-900 text-gray-400 px-4 pt-4 rounded border border-gray-600"
     >
@@ -219,7 +195,7 @@ X = [0, 1, 0, 1, 0, 1, 0, 1, 0]
 y = [0, 1, 0, 1, 2, 1, 0, 1, 0]
     </pre>
     <p class="py-2">
-      X is then fed to a program generator that finds opcodes to calculate y[n].
+      X is then fed to a program generator that finds operations to calculate y[n].
       Let's walk through this:
     </p>
     <div class="flex p-10 text-xs sm:text-2xl">
@@ -606,27 +582,24 @@ y = [0, 1, 0, 1, 2, 1, 0, 1, 0]
       </div>
     </div>
     <p class="py-2">
-      With each step, 1 through 8, a set of virtual machine operations will be
-      generated to go from X to y[n]. Once completed, we now have a set of
+      With each step, 0 through 8, a set of virtual machine operations will be
+      generated for X to y[n]. Once completed, we now have a set of
       programs that can take input X and solve each y[n] individually. You can
       think of this programatically like this (Python):
     </p>
     <pre
       class="bg-gray-900 text-gray-400 px-4 pt-4 rounded border border-gray-600"
     >
-    X = (0, 1, 0, 1, 0, 1, 0, 1, 0)
-    y = (0, 1, 0, 1, 2, 1, 0, 1, 0)
-
-    programs: list[Program] = []
+    X = [...]
+    y = [...]
+    programs = []
     for y_item in y:
-        program = VirtualMachine(
-            X=X, y=[y_item]
-        ).bruteforce()
+        program = bruteforce(x=x, y=[y_item])
         programs.append(program)
     </pre>
     <p class="py-2">
       The programs list is simply a set of opcodes that the virtual machine can
-      run. It simple maps by index to each y[n] like so:
+      run. 
     </p>
     <pre>
        programs[0] solves for y[0]
@@ -636,9 +609,7 @@ y = [0, 1, 0, 1, 2, 1, 0, 1, 0]
     <h2 class="py-4 text-2xl">Virtual Machine Operations</h2>
     <p class="py-2">
       The idea behind the virtual machine is very basic: it knows a predefined
-      set of operations it can execute against X to generate y output. The
-      following is an example of what I'm experimenting with (pardon the mess,
-      it is a WIP):
+      set of operations it can execute against X to generate an output for y. For example:
     </p>
     <pre
       class="bg-gray-900 text-gray-400 px-2 pt-4 rounded border border-gray-600"
@@ -646,38 +617,22 @@ y = [0, 1, 0, 1, 2, 1, 0, 1, 0]
     class Ops(Enum):
         NEXT = auto()  # move to next x index
         PREV = auto()  # move to prev x index
-        GOTO_END = auto()
-        GOTO_START = auto()
-        GOTO_MID = auto()
         INC = auto()  # increment current x
         DEC = auto()  # decrement current x
         SWAP = auto()  # swap x[index1] with x[index2]
-        SWAP_ENDS = auto()  # swap x[index1] with x[index2]
-        COPY_LEFT = auto()  # insert cur x to x[0]
-        COPY_RIGHT = auto()  # append cur x to x
         INSERT_LEFT = auto()  # insert 0 to x and 0 index, growing the list
         INSERT_RIGHT = auto()  # append 0 to x, extending the list
         SHRINK_LEFT = auto()  # delete first value of x (e.g. x = x[1:])
         SHRINK_RIGHT = auto()  # delete last value of x (e.g. x.pop())
-        DELETE_ALL = auto()  # delete all vals at current index
         DELETE = auto()  # delete at current index
         DELETE_ADJACENT = auto()  # delete all adjacent of value at current index
         SUM_SET = auto()  # set all to sum of x
         SUM_ADJACENT = auto()  # set all adjacent to cur x to sum of adjacent
-        # count how many N vals are on each end, delete the ends, and
-        # subtract the count from every other value not equal to N
-        COUNT_END_DELETE_SUB = auto()
-        # ldiff = length of x - N
-        # yval = value of cur index - ldiff
-        # delete cur index value from all
-        # set all remaining to yval
-        LDIFF_YVAL_SET_ALL = auto()
         JUMP_LT = auto()
         JUMP_GT = auto()
-        JUMP_X_LT = auto()
-        JUMP_X_GT = auto()
         PUSH = auto()
         POP = auto()
+        ...
     </pre>
     <h2 class="py-4 text-2xl">Early Observations</h2>
     <p class="py-2">
@@ -704,8 +659,8 @@ y = [0, 1, 0, 1, 2, 1, 0, 1, 0]
         CPU only. Using multiprocessing can greatly reduce this time.
       </li>
       <li>
-        An early attempt of brute-forcing X against the entirety of y (not
-        y[n]), as expected, took forever (never finished in a reasonable time or
+        Attempting to brute-force X against the entirety of y (not
+        y[n] subset), as expected, took forever (never finished in a reasonable time or
         ever in some cases).
       </li>
     </ul>
@@ -749,7 +704,7 @@ y = [0, 1, 0, 1, 2, 1, 0, 1, 0]
   <div class="grid grid-cols-2 gap-3">
     <div>
       <pre class="text-xl">3x157</pre>
-      <pre class="text-xs">updated 2024-07-06 23:52:54.396698+00:00</pre>
+      <pre class="text-xs">updated 2024-09-30 05:21:19.837157+00:00</pre>
     </div>
     <div>
       <div class="float-right">
